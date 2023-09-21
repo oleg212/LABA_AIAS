@@ -1,0 +1,81 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Арифметическое переполнение: использование оператора \"+\" на байтовом значении 4 и приведение результата к байтовому значению 8. Приведите значение к более широкому типу перед вызовом оператора \"+\", чтобы избежать переполнения (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/ipnnr/source/repos/LABA_AIAS/LABA_AIAS/matrix.h"
+                },
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 21
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "matrix::{ctor}",
+                  "decoratedName": "??0matrix@@QEAA@H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.35.32213.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/ipnnr/source/repos/LABA_AIAS/LABA_AIAS/matrix.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "310869afaa8ead090aefa7aad59c1c2717af68dfd0b92c8b7aceca89ea79bd1a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ipnnr/source/repos/laba_aias/laba_aias/main.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "b00e6996b0f5967719305ec8debfcc2ecca86d50c922a2d18463de46f2ccfd6d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/ipnnr/source/repos/laba_aias/laba_aias/graph.h"
+          },
+          "hashes": {
+            "sha-256": "5c182f33d2debaf2dfab8f93593edd5d6dbe602f0df1a7fe584b77f5cc2a58e8"
+          }
+        }
+      ]
+    }
+  ]
+}
