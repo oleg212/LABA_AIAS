@@ -1,3 +1,4 @@
 ﻿  main.cpp
 C:\Users\ipnnr\source\repos\LABA_AIAS\LABA_AIAS\matrix.h(25,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\ipnnr\source\repos\LABA_AIAS\LABA_AIAS\heap.h(14): warning C4172: возвращение адреса локальной или временной переменной : a
   LABA_AIAS.vcxproj -> C:\Users\ipnnr\source\repos\LABA_AIAS\x64\Debug\LABA_AIAS.exe

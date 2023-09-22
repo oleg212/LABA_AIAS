@@ -7,6 +7,7 @@
 #include <fstream>
 #include <chrono>
 #include "graph.h"
+#include "heap.h"
 #include <string>
 using namespace std;
 
@@ -17,7 +18,7 @@ using namespace std;
 
 
 int main(int argc, char* argv[]) {//algorythm, size1, size2, step, count, p, m, save, filename (sep: 0-, 1-.)
-	int algorythm = 1, size1 = 10, size2 = 100, step = 1, count = 100, p = 50, m = 100, save = 1, sep=1;
+	int algorythm = 2, size1 = 10, size2 = 150, step = 5, count = 1, p = 50, m = 100, save = 0, sep=1;
 	cout << argc << "; ";
 	for (int i = 0; i < argc; i++) 
 		cout << argv[i]<<' ';
@@ -52,9 +53,18 @@ int main(int argc, char* argv[]) {//algorythm, size1, size2, step, count, p, m, 
 
 			graph* a = new graph(size);
 			a->random(m1, p1);
-			int* ans = a->Dikstra_marks();
+			if (algorythm == 1) {
+				int* ans = a->Dikstra_marks();
+				delete[] ans;
+			}
+			if (algorythm == 2) {
+				int* ans2 = a->Dikstra_heap();
+				delete ans2;
+			}
+	
+			
 			delete a;
-			delete[] ans;
+			
 		}
 		auto end = std::chrono::high_resolution_clock::now();
 		std::chrono::duration<double> duration = end - start;

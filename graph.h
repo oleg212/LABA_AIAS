@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include <iomanip> 
 #include "matrix.h"
-
+#include "heap.h"
 
 class graph {
 private:
@@ -69,9 +69,44 @@ public:
 					}
 				}
 			}
+		}
+		return d;
+	}
+	int* Dikstra_heap(int p = 0) {
+		int size = m->get_size();
+		int* d = new int[size]; // метки
+		int* v = new int[size]; // посещенные вершины
+		int cur = p;
+		TernaryHeap* heap = new TernaryHeap();
+		heap->insert(cur, 0);
+		for (int i = 0; i < size; i++)
+		{
+			d[i] = -1;
+			v[i] = 1;
+		}
+		d[p] = 0;
+		int left = size;
+		d[cur] = 0;
 
 
 
+		while (!heap->empty())
+		{
+
+			for (int j = 0; j < size; j++) {
+				int tmp = m->get(cur, j);
+				if (tmp > 0) {
+					if ((d[j] == -1)||(d[j]> d[cur] + tmp)) {
+						d[j] = d[cur] + tmp;
+						heap->insert(j, d[j]);
+					}
+					
+				}
+			}
+			v[cur] = 0;
+			left--;			
+			while((v[cur]==0)&& (!heap->empty()))
+				cur = heap->extractMin();
 		}
 
 		return d;
