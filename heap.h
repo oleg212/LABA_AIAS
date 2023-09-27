@@ -44,16 +44,18 @@ struct node {
 
 class TernaryHeap {
 private:
-    vector<node> heap; // массив для хранения элементов 3-кучи
+    node* heap; // массив для хранения элементов 3-кучи
     int heapSize;
-    void emerge2(int ind) {
-        int p = parent(ind);
-        while ((ind != 0) && (heap[ind] < heap[p])) {
-            tr(ind, p);
-            ind = p;
-            p = parent(ind);
-        }
-    }
+    int max;
+    int lasttime;
+    //void emerge2(int ind) {
+    //    int p = parent(ind);
+    //    while ((ind != 0) && (heap[ind] < heap[p])) {
+    //        tr(ind, p);
+    //        ind = p;
+    //        p = parent(ind);
+    //    }
+    //}
     void emerge(int ind) {
         node t0 = heap[ind];
         int p = parent(ind);
@@ -109,26 +111,47 @@ private:
     void del(int ind) {
         heap[ind] = heap[heapSize-1];
         heapSize--;
-        heap.pop_back();
         if ((ind != 0) && (heap[ind] < heap[parent(ind)])) emerge(ind);
         else submerge(ind);
     }
+    void resize() {
+        max *= lasttime;
+        node* tmp = new node[max];
+        for (int i = 0; i < heapSize; i++) {
+            tmp[i] = heap[i];
+        }
+        //cout << "Oopsie, resized from" << max / lasttime << " to " << max << '\n';
+        lasttime *= 2;
+        node* tmp2 = heap;
+        heap = tmp;
+        delete[] tmp2;
+    }
 public:
-    TernaryHeap() {
-        heap = vector<node>(0);
+    TernaryHeap(int n) {
+        heap = new node[10*n];
         heapSize = 0;
+        max = n;
+        lasttime = 2;
+    }
+    ~TernaryHeap() {
+        delete[] heap;
     }
     bool empty() {
         return heapSize == 0;
     }
     void insert(node n) {
-        heap.push_back(n);
+        heap[heapSize] = n;
         emerge(heapSize++);
+
     }
     void insert(int ind, int d) {
         node n = node(ind, d);
-        heap.push_back(n);
+        heap[heapSize] = n;
         emerge(heapSize++);
+        if (heapSize >= max) {
+            resize();
+        }
+        
     }
     node pop_min() {
         if (heapSize == 0) throw - 1;

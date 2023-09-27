@@ -11,6 +11,7 @@ class graph {
 private:
 	int size;
 	matrix* m;
+
 public:
 
 	graph(int _size=1):	size(_size)	{
@@ -77,7 +78,7 @@ public:
 		int* d = new int[size]; // метки
 		int* v = new int[size]; // посещенные вершины
 		int cur = p;
-		TernaryHeap* heap = new TernaryHeap();
+		TernaryHeap* heap = new TernaryHeap(size);
 		heap->insert(cur, 0);
 		for (int i = 0; i < size; i++)
 		{
@@ -107,7 +108,7 @@ public:
 			while((v[cur]==0)&& (!heap->empty()))
 				cur = heap->pop_min_int();
 		}
-
+		delete heap;
 		return d;
 	}
 	int* Dikstra_heap2(int p = 0) {

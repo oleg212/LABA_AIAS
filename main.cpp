@@ -18,7 +18,7 @@ using namespace std;
 
 
 int main(int argc, char* argv[]) {//algorythm, size1, size2, step, count, p, m, save, filename (sep: 0-, 1-.)
-	int algorythm = 2, size1 = 10, size2 = 100, step = 10, count = 10, p = 50, m = 1000, save = 0, sep=1;
+	int algorythm = 2, size1 = 10, size2 = 1000, step = 100, count = 10, p = 50, m = 1000, save = 0, sep=1;
 	cout << argc << "; ";
 	for (int i = 0; i < argc; i++) 
 		cout << argv[i]<<' ';
