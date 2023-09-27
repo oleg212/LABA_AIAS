@@ -97,8 +97,8 @@ public:
 				if (tmp > 0) {
 					int dj = d[j];
 					if ((dj == -1)||(dj> d[cur] + tmp)) {
-						dj = d[cur] + tmp;
-						heap->insert(j, dj);
+						d[j] = d[cur] + tmp;
+						heap->insert(j, d[j]);
 					}					
 				}
 			}
@@ -109,6 +109,9 @@ public:
 		}
 
 		return d;
+	}
+	int* Dikstra_heap2(int p = 0) {
+		return nullptr;
 	}
 
 };

@@ -52,17 +52,13 @@ int main(int argc, char* argv[]) {//algorythm, size1, size2, step, count, p, m, 
 		for (int m = 0; m < count; m++) {
 
 
-			/*TernaryHeap h;
-			for (int i = 0; i < 100; i++) {
-				h.insert(i, i);
-			}
-			for (int i = 0; i < 100; i++) {
-				cout << h.pop_min_int() << "; ";
-			}*/
+		
 
 
 			graph* a = new graph(size);
 			a->random(m1, p1);
+
+
 			if (algorythm == 1) {
 				int* ans = a->Dikstra_marks();
 				delete[] ans;
@@ -71,6 +67,8 @@ int main(int argc, char* argv[]) {//algorythm, size1, size2, step, count, p, m, 
 				int* ans2 = a->Dikstra_heap();
 				delete[] ans2;
 			}
+
+
 			/*int* ans = a->Dikstra_marks();
 			int* ans2 = a->Dikstra_heap();
 			for (int i = 0; i < size; i++) {

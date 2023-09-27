@@ -44,15 +44,25 @@ struct node {
 
 class TernaryHeap {
 private:
-    vector<node> heap; // Вектор для хранения элементов 3-кучи
+    vector<node> heap; // массив для хранения элементов 3-кучи
     int heapSize;
-    void emerge(int ind) {
+    void emerge2(int ind) {
         int p = parent(ind);
         while ((ind != 0) && (heap[ind] < heap[p])) {
             tr(ind, p);
             ind = p;
             p = parent(ind);
         }
+    }
+    void emerge(int ind) {
+        node t0 = heap[ind];
+        int p = parent(ind);
+        while ((ind != 0) && (heap[p] > t0)) {
+            heap[ind] = heap[p];
+            ind = p;
+            p = parent(ind);
+        }
+        heap[ind] = t0;
     }
     int minchild(int ind) {
         int ch = child(ind);
