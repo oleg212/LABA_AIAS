@@ -92,21 +92,20 @@ public:
 
 		while (!heap->empty())
 		{
-
 			for (int j = 0; j < size; j++) {
 				int tmp = m->get(cur, j);
 				if (tmp > 0) {
-					if ((d[j] == -1)||(d[j]> d[cur] + tmp)) {
-						d[j] = d[cur] + tmp;
-						heap->insert(j, d[j]);
-					}
-					
+					int dj = d[j];
+					if ((dj == -1)||(dj> d[cur] + tmp)) {
+						dj = d[cur] + tmp;
+						heap->insert(j, dj);
+					}					
 				}
 			}
 			v[cur] = 0;
 			left--;			
 			while((v[cur]==0)&& (!heap->empty()))
-				cur = heap->extractMin();
+				cur = heap->pop_min_int();
 		}
 
 		return d;

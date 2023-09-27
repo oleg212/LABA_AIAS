@@ -18,7 +18,7 @@ using namespace std;
 
 
 int main(int argc, char* argv[]) {//algorythm, size1, size2, step, count, p, m, save, filename (sep: 0-, 1-.)
-	int algorythm = 2, size1 = 10, size2 = 150, step = 5, count = 1, p = 50, m = 100, save = 0, sep=1;
+	int algorythm = 2, size1 = 10, size2 = 100, step = 10, count = 10, p = 50, m = 1000, save = 0, sep=1;
 	cout << argc << "; ";
 	for (int i = 0; i < argc; i++) 
 		cout << argv[i]<<' ';
@@ -43,13 +43,23 @@ int main(int argc, char* argv[]) {//algorythm, size1, size2, step, count, p, m, 
 
 	ofstream MyFile(filename);
 	MyFile <<( (algorythm == 1) ? "Marked algorythm;" : "3-Heap algorythm;" )<< " size : {"<<size1<<":"<<size2<<"}; step = "<<step<<"; count = "<<count<<"; p = "<<p<<"; m = "<< m<<";\n";
-	for (int ii = size1; ii <size2; ii +=step) {
+	for (int ii = size1; ii <=size2; ii +=step) {
 		auto start = std::chrono::high_resolution_clock::now();
 
 		int size = ii;
 		int p1 = p, m1 = m;
 
 		for (int m = 0; m < count; m++) {
+
+
+			/*TernaryHeap h;
+			for (int i = 0; i < 100; i++) {
+				h.insert(i, i);
+			}
+			for (int i = 0; i < 100; i++) {
+				cout << h.pop_min_int() << "; ";
+			}*/
+
 
 			graph* a = new graph(size);
 			a->random(m1, p1);
@@ -59,10 +69,18 @@ int main(int argc, char* argv[]) {//algorythm, size1, size2, step, count, p, m, 
 			}
 			if (algorythm == 2) {
 				int* ans2 = a->Dikstra_heap();
-				delete ans2;
+				delete[] ans2;
 			}
-	
-			
+			/*int* ans = a->Dikstra_marks();
+			int* ans2 = a->Dikstra_heap();
+			for (int i = 0; i < size; i++) {
+				cout << ans[i] << "; ";
+			}
+			cout << '\n';
+			for (int i = 0; i < size; i++) {
+				cout << ans2[i] << "; ";
+			}
+			cout << '\n' << '\n';*/
 			delete a;
 			
 		}
