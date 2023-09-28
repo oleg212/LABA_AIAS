@@ -75,44 +75,72 @@ public:
 	}
 	int* Dikstra_heap(int p = 0) {
 		int size = m->get_size();
-		int* d = new int[size]; // метки
-		int* v = new int[size]; // посещенные вершины
-		int cur = p;
+		bool* up = new bool[size];
+		int* dist = new int[size];
 		TernaryHeap* heap = new TernaryHeap(size);
-		heap->insert(cur, 0);
-		for (int i = 0; i < size; i++)
-		{
-			d[i] = -1;
-			v[i] = 1;
+		for (int i = 0; i < size; i++) {
+			up[i] = false;
+			dist[i] = 9999999;
+			heap->insert(i, 9999999);
 		}
-		d[p] = 0;
-		int left = size;
-		d[cur] = 0;
-
-
-
-		while (!heap->empty())
-		{
-			for (int j = 0; j < size; j++) {
-				int tmp = m->get(cur, j);
-				if (tmp > 0) {
-					int dj = d[j];
-					if ((dj == -1)||(dj> d[cur] + tmp)) {
-						d[j] = d[cur] + tmp;
-						heap->insert(j, d[j]);
-					}					
+		dist[p] = 0;
+		heap->insert(p, 0);
+		int delta, tmp,r0;
+		while (!heap->empty()) {
+			r0 = heap->pop_min_int();
+			if (up[r0]) continue;
+			up[r0] = true;
+			for (int i = 0; i < size; i++) {
+				if (m->get(r0, i) > 0) {
+					int newDist = dist[r0] + m->get(r0, i);
+					if (newDist < dist[i]) {
+						dist[i] = newDist; 
+						heap->insert(i, newDist);
+					}
 				}
 			}
-			v[cur] = 0;
-			left--;			
-			while((v[cur]==0)&& (!heap->empty()))
-				cur = heap->pop_min_int();
 		}
-		delete heap;
-		return d;
+		return dist;
+
+		
 	}
-	int* Dikstra_heap2(int p = 0) {
-		return nullptr;
-	}
+	//int* Dikstra_heap(int p=0, int c=10, int l=5) {
+	//	int size = m->get_size();
+	//	int* d = new int[size]; // метки
+	//	int* v = new int[size]; // посещенные вершины
+	//	int cur = p;
+	//	TernaryHeap* heap = new TernaryHeap(size, c ,l);
+	//	heap->insert(cur, 0);
+	//	for (int i = 0; i < size; i++)
+	//	{
+	//		d[i] = -1;
+	//		v[i] = 1;
+	//	}
+	//	d[p] = 0;
+	//	int left = size;
+	//	d[cur] = 0;
+
+
+
+	//	while (!heap->empty())
+	//	{
+	//		for (int j = 0; j < size; j++) {
+	//			int tmp = m->get(cur, j);
+	//			if (tmp > 0) {
+	//				int dj = d[j];
+	//				if ((dj == -1) || (dj > d[cur] + tmp)) {
+	//					d[j] = d[cur] + tmp;
+	//					heap->insert(j, d[j]);
+	//				}
+	//			}
+	//		}
+	//		v[cur] = 0;
+	//		left--;
+	//		while ((v[cur] == 0) && (!heap->empty()))
+	//			cur = heap->pop_min_int();
+	//	}
+	//	delete heap;
+	//	return d;
+	//}
 
 };

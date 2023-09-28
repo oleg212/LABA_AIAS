@@ -130,8 +130,14 @@ public:
     TernaryHeap(int n) {
         heap = new node[10*n];
         heapSize = 0;
-        max = n;
+        max = 10 * n;
         lasttime = 2;
+    }
+    TernaryHeap(int n, int c, int l) {
+        heap = new node[c * n];
+        heapSize = 0;
+        max = c*n;
+        lasttime = l;
     }
     ~TernaryHeap() {
         delete[] heap;

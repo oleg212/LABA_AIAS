@@ -18,12 +18,12 @@ using namespace std;
 
 
 int main(int argc, char* argv[]) {//algorythm, size1, size2, step, count, p, m, save, filename (sep: 0-, 1-.)
-	int algorythm = 2, size1 = 10, size2 = 1000, step = 100, count = 10, p = 50, m = 1000, save = 0, sep=1;
+	int algorythm = 2, size1 = 10, size2 = 1000, step = 100, count = 10, p = 50, m = 1000, save = 0, sep = 1, c = 10, l = 2;
 	cout << argc << "; ";
 	for (int i = 0; i < argc; i++) 
 		cout << argv[i]<<' ';
 	string filename = "test.csv";
-	if (argc == 11) {
+	if (argc > 11) {
 		algorythm = stoi(argv[1]);
 		size1 = stoi(argv[2]);
 		size2 = stoi(argv[3]);
@@ -35,8 +35,10 @@ int main(int argc, char* argv[]) {//algorythm, size1, size2, step, count, p, m, 
 		filename = (argv[9]);
 		filename +=".csv";
 		sep= stoi(argv[10]);
-
-		
+		if (argc == 13) {
+			c= stoi(argv[11]);
+			l = stoi(argv[12]);
+		}
 	}
 
 	cout << '\n';
