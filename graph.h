@@ -100,6 +100,7 @@ public:
 				}
 			}
 		}
+		delete heap;
 		return dist;
 
 		
